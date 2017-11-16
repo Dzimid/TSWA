@@ -30,7 +30,7 @@ namespace Kalkulator_test
 
             var calculator = new Calculator();
 
-            if (0 == calculator.result) {
+            if ("0" == calculator.result) {
                 testResult.ForeColor = Color.Green;
             }
         }

@@ -8,11 +8,11 @@ namespace Kalkulator
 {  
     public class Calculator
     {
-        public double result;
+        public string result;
 
         public Calculator()
         {
-            this.result = 0;
+            this.result = "0";
         }
     }
 }
