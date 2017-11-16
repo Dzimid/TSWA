@@ -8,21 +8,34 @@ namespace Kalkulator
 {  
     public class Calculator
     {
-        private string result_;
+        private string result;
+        private string systemV;
 
         public Calculator()
         {
-            this.result_ = "0";
+            this.result = "0";
+            this.systemV = "HEX";
         }
 
         public string Result
         {
             set {
-                this.result_ = value;
+                this.result = value;
             }
 
             get {
-                return this.result_;
+                return this.result;
+            }
+        }
+
+        public string SystemV
+        {
+            set {
+                this.systemV = value;
+            }
+
+            get {
+                return this.systemV;
             }
         }
     }

@@ -66,12 +66,10 @@
             // systemDec
             // 
             this.systemDec.AutoSize = true;
-            this.systemDec.Checked = true;
             this.systemDec.Location = new System.Drawing.Point(13, 86);
             this.systemDec.Name = "systemDec";
             this.systemDec.Size = new System.Drawing.Size(45, 17);
             this.systemDec.TabIndex = 3;
-            this.systemDec.TabStop = true;
             this.systemDec.Text = "Dec";
             this.systemDec.UseVisualStyleBackColor = true;
             this.systemDec.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);

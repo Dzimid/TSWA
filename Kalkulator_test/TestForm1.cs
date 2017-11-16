@@ -27,9 +27,9 @@ namespace Kalkulator_test
             this.calculator = new Calculator();
             form.Show();
 
-            //this.testResultValue();
-            //this.testTextBox();
-            //this.testDecChecked();
+            this.testResultValue();
+            this.testTextBox();
+            this.testDecChecked();
         }
 
         private void testResultValue()
