@@ -53,8 +53,24 @@ namespace Kalkulator
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (calculator.BinTable.Contains(e.KeyChar)) {
-                mainTextBox.Text += e.KeyChar;
+            char keyChar = Char.ToUpper(e.KeyChar);
+
+            if (true == systemBin.Checked) {
+                if (calculator.BinTable.Contains(keyChar)) {
+                    mainTextBox.Text += keyChar;
+                }
+            } else if (true == systemOct.Checked) {
+                if (calculator.OctTable.Contains(keyChar)) {
+                    mainTextBox.Text += keyChar;
+                }
+            } else if (true == systemDec.Checked) {
+                if (calculator.DecTable.Contains(keyChar)) {
+                    mainTextBox.Text += keyChar;
+                }
+            } else if (true == systemHex.Checked) {
+                if (calculator.HexTable.Contains(keyChar)) {
+                    mainTextBox.Text += keyChar;
+                }
             }
         }
     }
