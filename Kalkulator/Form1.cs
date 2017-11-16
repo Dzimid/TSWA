@@ -22,6 +22,7 @@ namespace Kalkulator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Initialize calculator
             this.calculator = new Calculator();
             mainTextBox.Text = this.calculator.Result;
 
@@ -41,37 +42,26 @@ namespace Kalkulator
             }
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            string system = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();;
             char keyChar = Char.ToUpper(e.KeyChar);
 
-            if (true == systemBin.Checked) {
-                if (calculator.BinTable.Contains(keyChar)) {
-                    mainTextBox.Text += keyChar;
-                }
-            } else if (true == systemOct.Checked) {
-                if (calculator.OctTable.Contains(keyChar)) {
-                    mainTextBox.Text += keyChar;
-                }
-            } else if (true == systemDec.Checked) {
-                if (calculator.DecTable.Contains(keyChar)) {
-                    mainTextBox.Text += keyChar;
-                }
-            } else if (true == systemHex.Checked) {
-                if (calculator.HexTable.Contains(keyChar)) {
-                    mainTextBox.Text += keyChar;
+            // Validation
+            if(this.calculator.SystemTable[system].Contains(keyChar)) {
+                mainTextBox.Text += keyChar;
+            }
+        }
+
+        private string getCheckedRadioName()
+        {
+            foreach (RadioButton radio in this.Controls) {
+                if (radio.Checked) {
+                    return radio.Name;
                 }
             }
+
+            return null;
         }
     }
 }

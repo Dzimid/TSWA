@@ -23,10 +23,12 @@ namespace Kalkulator_test
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Load calculator form
             this.form = new Form1();
             this.calculator = new Calculator();
             form.Show();
 
+            // Running tests
             this.testResultValue();
             this.testTextBox();
             this.testDecChecked();

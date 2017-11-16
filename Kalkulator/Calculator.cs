@@ -10,15 +10,20 @@ namespace Kalkulator
     {
         private string result;
         private string systemV;
-        private char[] binTable = { '0', '1' };
-        private char[] octTable = { '0', '1', '2', '3', '4', '5', '6', '7' };
-        private char[] decTable = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        private char[] hexTable = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+        private static char[] binTable = { '0', '1' };
+        private static char[] octTable = { '0', '1', '2', '3', '4', '5', '6', '7' };
+        private static char[] decTable = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        private static char[] hexTable = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+        private IDictionary<string, char[]> systemTable = new Dictionary<string, char[]>();
 
         public Calculator()
         {
             this.result = "0";
             this.systemV = "DEC";
+            this.systemTable["BIN"] = Calculator.binTable;
+            this.systemTable["OCT"] = Calculator.octTable;
+            this.systemTable["DEC"] = Calculator.decTable;
+            this.systemTable["HEX"] = Calculator.hexTable;
         }
 
         public string Result
@@ -46,28 +51,35 @@ namespace Kalkulator
         public char[] BinTable
         {
             get {
-                return this.binTable;
+                return Calculator.binTable;
             }
         }
 
         public char[] OctTable
         {
             get {
-                return this.octTable;
+                return Calculator.octTable;
             }
         }
 
         public char[] DecTable
         {
             get {
-                return this.decTable;
+                return Calculator.decTable;
             }
         }
 
         public char[] HexTable
         {
             get {
-                return this.hexTable;
+                return Calculator.hexTable;
+            }
+        }
+
+        public IDictionary<string, char[]> SystemTable
+        {
+            get {
+                return this.systemTable;
             }
         }
     }

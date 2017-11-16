@@ -73,7 +73,6 @@
             this.systemDec.TabIndex = 3;
             this.systemDec.Text = "Dec";
             this.systemDec.UseVisualStyleBackColor = true;
-            this.systemDec.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // systemHex
             // 
@@ -85,7 +84,6 @@
             this.systemHex.TabStop = true;
             this.systemHex.Text = "Hex";
             this.systemHex.UseVisualStyleBackColor = true;
-            this.systemHex.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // Form1
             // 
@@ -99,6 +97,7 @@
             this.Controls.Add(this.mainTextBox);
             this.KeyPreview = true;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kalkulator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
