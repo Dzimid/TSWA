@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,6 +49,13 @@ namespace Kalkulator
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (calculator.BinTable.Contains(e.KeyChar)) {
+                mainTextBox.Text += e.KeyChar;
+            }
         }
     }
 }

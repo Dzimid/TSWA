@@ -36,6 +36,7 @@
             // 
             // mainTextBox
             // 
+            this.mainTextBox.Enabled = false;
             this.mainTextBox.Location = new System.Drawing.Point(13, 13);
             this.mainTextBox.Name = "mainTextBox";
             this.mainTextBox.Size = new System.Drawing.Size(259, 20);
@@ -96,9 +97,11 @@
             this.Controls.Add(this.systemOct);
             this.Controls.Add(this.systemBin);
             this.Controls.Add(this.mainTextBox);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Kalkulator";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
