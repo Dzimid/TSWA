@@ -27,19 +27,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.mainTextBox = new System.Windows.Forms.TextBox();
             this.systemBin = new System.Windows.Forms.RadioButton();
             this.systemOct = new System.Windows.Forms.RadioButton();
             this.systemDec = new System.Windows.Forms.RadioButton();
             this.systemHex = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
-            // textBox1
+            // mainTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(259, 20);
-            this.textBox1.TabIndex = 0;
+            this.mainTextBox.Location = new System.Drawing.Point(13, 13);
+            this.mainTextBox.Name = "mainTextBox";
+            this.mainTextBox.Size = new System.Drawing.Size(259, 20);
+            this.mainTextBox.TabIndex = 0;
             // 
             // systemBin
             // 
@@ -66,6 +66,7 @@
             // systemDec
             // 
             this.systemDec.AutoSize = true;
+            this.systemDec.Checked = true;
             this.systemDec.Location = new System.Drawing.Point(13, 86);
             this.systemDec.Name = "systemDec";
             this.systemDec.Size = new System.Drawing.Size(45, 17);
@@ -96,7 +97,7 @@
             this.Controls.Add(this.systemDec);
             this.Controls.Add(this.systemOct);
             this.Controls.Add(this.systemBin);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.mainTextBox);
             this.Name = "Form1";
             this.Text = "Kalkulator";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -106,12 +107,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RadioButton systemBin;
         private System.Windows.Forms.RadioButton systemOct;
-        private System.Windows.Forms.RadioButton systemDec;
         private System.Windows.Forms.RadioButton systemHex;
+        public System.Windows.Forms.RadioButton systemDec;
+        public System.Windows.Forms.TextBox mainTextBox;
     }
 }
 

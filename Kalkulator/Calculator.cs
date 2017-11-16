@@ -8,11 +8,22 @@ namespace Kalkulator
 {  
     public class Calculator
     {
-        public string result;
+        private string result_;
 
         public Calculator()
         {
-            this.result = "0";
+            this.result_ = "0";
+        }
+
+        public string Result
+        {
+            set {
+                this.result_ = value;
+            }
+
+            get {
+                return this.result_;
+            }
         }
     }
 }
