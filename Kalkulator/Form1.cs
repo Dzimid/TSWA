@@ -44,11 +44,10 @@ namespace Kalkulator
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string system = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();;
             char keyChar = Char.ToUpper(e.KeyChar);
 
             // Validation
-            if(this.calculator.SystemTable[system].Contains(keyChar)) {
+            if(this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
                 mainTextBox.Text += keyChar;
             }
         }
@@ -62,6 +61,26 @@ namespace Kalkulator
             }
 
             return null;
+        }
+
+        private void systemBin_CheckedChanged(object sender, EventArgs e)
+        {           
+            this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
+        }
+
+        private void systemOct_CheckedChanged(object sender, EventArgs e)
+        {
+            this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
+        }
+
+        private void systemDec_CheckedChanged(object sender, EventArgs e)
+        {
+            this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
+        }
+
+        private void systemHex_CheckedChanged(object sender, EventArgs e)
+        {
+            this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
         }
     }
 }

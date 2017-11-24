@@ -52,6 +52,7 @@
             this.systemBin.TabStop = true;
             this.systemBin.Text = "Bin";
             this.systemBin.UseVisualStyleBackColor = true;
+            this.systemBin.CheckedChanged += new System.EventHandler(this.systemBin_CheckedChanged);
             // 
             // systemOct
             // 
@@ -63,6 +64,7 @@
             this.systemOct.TabStop = true;
             this.systemOct.Text = "Oct";
             this.systemOct.UseVisualStyleBackColor = true;
+            this.systemOct.CheckedChanged += new System.EventHandler(this.systemOct_CheckedChanged);
             // 
             // systemDec
             // 
@@ -73,6 +75,7 @@
             this.systemDec.TabIndex = 3;
             this.systemDec.Text = "Dec";
             this.systemDec.UseVisualStyleBackColor = true;
+            this.systemDec.CheckedChanged += new System.EventHandler(this.systemDec_CheckedChanged);
             // 
             // systemHex
             // 
@@ -84,6 +87,7 @@
             this.systemHex.TabStop = true;
             this.systemHex.Text = "Hex";
             this.systemHex.UseVisualStyleBackColor = true;
+            this.systemHex.CheckedChanged += new System.EventHandler(this.systemHex_CheckedChanged);
             // 
             // Form1
             // 
