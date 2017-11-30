@@ -18,27 +18,27 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestStartingResult()
         {
             Assert.AreEqual("0", this.calc.Result);
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void TestStartingSystemV()
         {
             Assert.AreEqual("DEC", this.calc.SystemV);
         }
 
         [TestMethod]
-        public void TestMethod3()
+        public void TestStartingMainTextBoxText()
         {
             Assert.AreEqual("0", this.form.mainTextBox.Text);
         }
 
         [TestMethod]
-        public void TestMethod4()
+        public void TestStartingSystemDecChecked()
         {
             Assert.IsTrue(this.form.systemDec.Checked);
-        }
+        }        
     }
 }
