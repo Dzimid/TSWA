@@ -50,6 +50,11 @@ namespace Kalkulator
             if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
                 mainTextBox.Text += keyChar;
             }
+
+            // Backspace
+            if ((char)8 == e.KeyChar) {
+                mainTextBox.Text =  mainTextBox.Text.Remove(mainTextBox.Text.Length - 1, 1);
+            }
         }
 
         private string getCheckedRadioName()
