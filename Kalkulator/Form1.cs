@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kalkulator
@@ -161,6 +160,20 @@ namespace Kalkulator
         {
             var b = (Button)sender;
             this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keys.Back == e.KeyCode) {
+                buttonBackspace.BackColor = SystemColors.ControlLightLight;
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Keys.Back == e.KeyCode) {
+                buttonBackspace.BackColor = SystemColors.ControlLight;
+            }
         }
     }
 }
