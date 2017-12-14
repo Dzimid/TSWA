@@ -20,7 +20,7 @@ namespace Kalkulator
             InitializeComponent();            
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
             // Initialize calculator
             this.calculator = new Calculator();
@@ -47,8 +47,13 @@ namespace Kalkulator
             char keyChar = Char.ToUpper(e.KeyChar);
 
             // Validation
-            if(this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
+            if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
                 mainTextBox.Text += keyChar;
+            }
+
+            // Backspace
+            if ((char)8 == e.KeyChar) {
+                mainTextBox.Text =  mainTextBox.Text.Remove(mainTextBox.Text.Length - 1, 1);
             }
         }
 
