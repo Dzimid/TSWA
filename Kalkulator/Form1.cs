@@ -48,24 +48,40 @@ namespace Kalkulator
 
             // Validation
             if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
-                mainTextBox.Text += keyChar;
+                this.addToMainTextBox(keyChar);
             }
 
             // Backspace
             if ((char)8 == e.KeyChar) {
-                mainTextBox.Text =  mainTextBox.Text.Remove(mainTextBox.Text.Length - 1, 1);
+                this.Backspace();
             }
         }
 
         private string getCheckedRadioName()
         {
-            foreach (RadioButton radio in this.Controls) {
-                if (radio.Checked) {
-                    return radio.Name;
+            foreach (Control control in this.Controls) {
+                if (typeof(RadioButton) == control.GetType()) {
+                    RadioButton rb = (RadioButton) control;
+
+                    if (rb.Checked) {
+                        return control.Name;
+                    }
                 }
             }
 
             return null;
+        }
+
+        private void Backspace()
+        {
+            if (!string.IsNullOrEmpty(mainTextBox.Text)) {
+                mainTextBox.Text = mainTextBox.Text.Remove(mainTextBox.Text.Length - 1, 1);
+            }
+        }
+
+        private void addToMainTextBox(char c)
+        {
+            mainTextBox.Text += c;
         }
 
         private void systemBin_CheckedChanged(object sender, EventArgs e)
@@ -86,6 +102,65 @@ namespace Kalkulator
         private void systemHex_CheckedChanged(object sender, EventArgs e)
         {
             this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void buttonBackspace_Click(object sender, EventArgs e)
+        {
+            this.Backspace();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var b = (Button) sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
         }
     }
 }
