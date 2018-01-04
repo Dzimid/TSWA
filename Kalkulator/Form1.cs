@@ -13,7 +13,7 @@ namespace Kalkulator
     public partial class Form1 : Form
     {
         private Calculator calculator;
-        private Keys[] keyArray = { Keys.Back, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9 };
+        private Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9 };
         private Button[] buttonsArray;
 
         public Form1()
@@ -42,7 +42,7 @@ namespace Kalkulator
                     break;
             }
 
-            Button[] btns = { buttonBackspace, button1, button2, button3, button4, button5, button6, button7, button8, button9 };
+            Button[] btns = { buttonBackspace, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9 };
             this.buttonsArray = btns;
     }
 
