@@ -66,11 +66,11 @@
             // mainTextBox
             // 
             this.mainTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.mainTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mainTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mainTextBox.Enabled = false;
             this.mainTextBox.Location = new System.Drawing.Point(13, 34);
             this.mainTextBox.Name = "mainTextBox";
-            this.mainTextBox.Size = new System.Drawing.Size(356, 13);
+            this.mainTextBox.Size = new System.Drawing.Size(356, 20);
             this.mainTextBox.TabIndex = 0;
             // 
             // systemBin

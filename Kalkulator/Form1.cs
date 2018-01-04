@@ -13,6 +13,8 @@ namespace Kalkulator
     public partial class Form1 : Form
     {
         private Calculator calculator;
+        private Keys[] keyArray = { Keys.Back, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9 };
+        private Button[] buttonsArray;
 
         public Form1()
         {
@@ -39,7 +41,10 @@ namespace Kalkulator
                     systemHex.Checked = true;
                     break;
             }
-        }
+
+            Button[] btns = { buttonBackspace, button1, button2, button3, button4, button5, button6, button7, button8, button9 };
+            this.buttonsArray = btns;
+    }
 
         public void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -164,15 +169,15 @@ namespace Kalkulator
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Keys.Back == e.KeyCode) {
-                buttonBackspace.BackColor = SystemColors.ControlLightLight;
+            if (-1 != Array.IndexOf(this.keyArray, e.KeyCode)) {
+                this.buttonsArray[Array.IndexOf(this.keyArray, e.KeyCode)].BackColor = SystemColors.ControlLightLight;
             }
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Keys.Back == e.KeyCode) {
-                buttonBackspace.BackColor = SystemColors.ControlLight;
+            if (-1 != Array.IndexOf(this.keyArray, e.KeyCode)) {
+                this.buttonsArray[Array.IndexOf(this.keyArray, e.KeyCode)].BackColor = SystemColors.ControlLight;
             }
         }
 
