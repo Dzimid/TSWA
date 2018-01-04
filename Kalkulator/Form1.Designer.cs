@@ -60,20 +60,23 @@
             this.buttonBackspace = new System.Windows.Forms.Button();
             this.buttonDeleteCE = new System.Windows.Forms.Button();
             this.buttonDeleteC = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // mainTextBox
             // 
+            this.mainTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.mainTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mainTextBox.Enabled = false;
-            this.mainTextBox.Location = new System.Drawing.Point(13, 13);
+            this.mainTextBox.Location = new System.Drawing.Point(13, 34);
             this.mainTextBox.Name = "mainTextBox";
-            this.mainTextBox.Size = new System.Drawing.Size(356, 20);
+            this.mainTextBox.Size = new System.Drawing.Size(356, 13);
             this.mainTextBox.TabIndex = 0;
             // 
             // systemBin
             // 
             this.systemBin.AutoSize = true;
-            this.systemBin.Location = new System.Drawing.Point(13, 40);
+            this.systemBin.Location = new System.Drawing.Point(13, 102);
             this.systemBin.Name = "systemBin";
             this.systemBin.Size = new System.Drawing.Size(40, 17);
             this.systemBin.TabIndex = 1;
@@ -85,7 +88,7 @@
             // systemOct
             // 
             this.systemOct.AutoSize = true;
-            this.systemOct.Location = new System.Drawing.Point(13, 63);
+            this.systemOct.Location = new System.Drawing.Point(13, 125);
             this.systemOct.Name = "systemOct";
             this.systemOct.Size = new System.Drawing.Size(42, 17);
             this.systemOct.TabIndex = 2;
@@ -97,7 +100,7 @@
             // systemDec
             // 
             this.systemDec.AutoSize = true;
-            this.systemDec.Location = new System.Drawing.Point(13, 86);
+            this.systemDec.Location = new System.Drawing.Point(13, 148);
             this.systemDec.Name = "systemDec";
             this.systemDec.Size = new System.Drawing.Size(45, 17);
             this.systemDec.TabIndex = 3;
@@ -108,7 +111,7 @@
             // systemHex
             // 
             this.systemHex.AutoSize = true;
-            this.systemHex.Location = new System.Drawing.Point(13, 109);
+            this.systemHex.Location = new System.Drawing.Point(13, 171);
             this.systemHex.Name = "systemHex";
             this.systemHex.Size = new System.Drawing.Size(44, 17);
             this.systemHex.TabIndex = 4;
@@ -332,6 +335,7 @@
             this.buttonPlus.TabIndex = 27;
             this.buttonPlus.Text = "+";
             this.buttonPlus.UseVisualStyleBackColor = true;
+            this.buttonPlus.Click += new System.EventHandler(this.buttonPlus_Click);
             // 
             // buttonEqual
             // 
@@ -379,11 +383,22 @@
             this.buttonDeleteC.Text = "c";
             this.buttonDeleteC.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(13, 8);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(356, 13);
+            this.textBox1.TabIndex = 33;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 312);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonDeleteC);
             this.Controls.Add(this.buttonDeleteCE);
             this.Controls.Add(this.buttonBackspace);
@@ -431,9 +446,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.RadioButton systemBin;
-        private System.Windows.Forms.RadioButton systemOct;
-        private System.Windows.Forms.RadioButton systemHex;
         public System.Windows.Forms.RadioButton systemDec;
         public System.Windows.Forms.TextBox mainTextBox;
         private System.Windows.Forms.Button button1;
@@ -464,6 +476,10 @@
         private System.Windows.Forms.Button buttonBackspace;
         private System.Windows.Forms.Button buttonDeleteCE;
         private System.Windows.Forms.Button buttonDeleteC;
+        private System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.RadioButton systemBin;
+        public System.Windows.Forms.RadioButton systemOct;
+        public System.Windows.Forms.RadioButton systemHex;
     }
 }
 

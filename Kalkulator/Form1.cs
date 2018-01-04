@@ -16,7 +16,7 @@ namespace Kalkulator
 
         public Form1()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         public void Form1_Load(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace Kalkulator
             }
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        public void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char keyChar = Char.ToUpper(e.KeyChar);
 
@@ -71,7 +71,7 @@ namespace Kalkulator
             return null;
         }
 
-        private void Backspace()
+        public void Backspace()
         {
             if (!string.IsNullOrEmpty(mainTextBox.Text)) {
                 mainTextBox.Text = mainTextBox.Text.Remove(mainTextBox.Text.Length - 1, 1);
@@ -174,6 +174,11 @@ namespace Kalkulator
             if (Keys.Back == e.KeyCode) {
                 buttonBackspace.BackColor = SystemColors.ControlLight;
             }
+        }
+
+        private void buttonPlus_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
