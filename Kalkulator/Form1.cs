@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kalkulator
@@ -14,10 +13,12 @@ namespace Kalkulator
     public partial class Form1 : Form
     {
         private Calculator calculator;
+        private Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9 };
+        private Button[] buttonsArray;
 
         public Form1()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         public void Form1_Load(object sender, EventArgs e)
@@ -40,32 +41,51 @@ namespace Kalkulator
                     systemHex.Checked = true;
                     break;
             }
-        }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+            Button[] btns = { buttonBackspace, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9 };
+            this.buttonsArray = btns;
+    }
+
+        public void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char keyChar = Char.ToUpper(e.KeyChar);
 
             // Validation
             if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
-                mainTextBox.Text += keyChar;
+                this.addToMainTextBox(keyChar);
             }
 
             // Backspace
             if ((char)8 == e.KeyChar) {
-                mainTextBox.Text =  mainTextBox.Text.Remove(mainTextBox.Text.Length - 1, 1);
+                this.Backspace();
             }
         }
 
         private string getCheckedRadioName()
         {
-            foreach (RadioButton radio in this.Controls) {
-                if (radio.Checked) {
-                    return radio.Name;
+            foreach (Control control in this.Controls) {
+                if (typeof(RadioButton) == control.GetType()) {
+                    RadioButton rb = (RadioButton) control;
+
+                    if (rb.Checked) {
+                        return control.Name;
+                    }
                 }
             }
 
             return null;
+        }
+
+        public void Backspace()
+        {
+            if (!string.IsNullOrEmpty(mainTextBox.Text)) {
+                mainTextBox.Text = mainTextBox.Text.Remove(mainTextBox.Text.Length - 1, 1);
+            }
+        }
+
+        private void addToMainTextBox(char c)
+        {
+            mainTextBox.Text += c;
         }
 
         private void systemBin_CheckedChanged(object sender, EventArgs e)
@@ -86,6 +106,84 @@ namespace Kalkulator
         private void systemHex_CheckedChanged(object sender, EventArgs e)
         {
             this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void buttonBackspace_Click(object sender, EventArgs e)
+        {
+            this.Backspace();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var b = (Button) sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            this.addToMainTextBox(char.Parse(b.Text));
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (-1 != Array.IndexOf(this.keyArray, e.KeyCode)) {
+                this.buttonsArray[Array.IndexOf(this.keyArray, e.KeyCode)].BackColor = SystemColors.ControlLightLight;
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (-1 != Array.IndexOf(this.keyArray, e.KeyCode)) {
+                this.buttonsArray[Array.IndexOf(this.keyArray, e.KeyCode)].BackColor = SystemColors.ControlLight;
+            }
+        }
+
+        private void buttonPlus_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
