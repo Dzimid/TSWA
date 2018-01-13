@@ -15,6 +15,7 @@ namespace Kalkulator
         private Calculator calculator;
         private Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9 };
         private Button[] buttonsArray;
+        bool isFirst = true;
 
         public Form1()
         {
@@ -50,9 +51,15 @@ namespace Kalkulator
         {
             char keyChar = Char.ToUpper(e.KeyChar);
 
+
             // Validation
             if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
-                this.addToMainTextBox(keyChar);
+                if (isFirst) {
+                    this.mainTextBox.Text = keyChar.ToString();
+                    isFirst = false;
+                } else {
+                    this.addToMainTextBox(keyChar);
+                }
             }
 
             // Backspace
