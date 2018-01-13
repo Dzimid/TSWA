@@ -16,6 +16,8 @@ namespace Kalkulator
         private Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9 };
         private Button[] buttonsArray;
         bool isFirst = true;
+        double savedNr;
+        string currentOperation;
 
         public Form1()
         {
@@ -52,7 +54,7 @@ namespace Kalkulator
             char keyChar = Char.ToUpper(e.KeyChar);
 
 
-            // Validation
+            // Validation + replacing 0 if first
             if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
                 if (isFirst) {
                     this.mainTextBox.Text = keyChar.ToString();
@@ -64,7 +66,32 @@ namespace Kalkulator
 
             // Backspace
             if ((char)8 == e.KeyChar) {
-                this.Backspace();
+                Backspace();
+            }
+
+            // Addition
+            if ((char)43 == e.KeyChar) {
+                Addition();
+            }
+
+            // Substraction
+            if ((char)45 == e.KeyChar) {
+                Substraction();
+            }
+
+            // Multiplication
+            if ((char)42 == e.KeyChar) {
+                Multiplication();
+            }
+
+            // Division
+            if ((char)47 == e.KeyChar) {
+                Division();
+            }
+
+            // sum
+            if ((char)61 == e.KeyChar) {
+                Sum();
             }
         }
 
@@ -88,6 +115,48 @@ namespace Kalkulator
             if (!string.IsNullOrEmpty(mainTextBox.Text)) {
                 mainTextBox.Text = mainTextBox.Text.Remove(mainTextBox.Text.Length - 1, 1);
             }
+        }
+
+        public void Addition() {
+            savedNr = Int64.Parse(mainTextBox.Text);
+            currentOperation = "+";
+            operationsTextbox.Text = mainTextBox.Text + " + ";
+        }
+
+        public void Substraction() {
+            savedNr = Int64.Parse(mainTextBox.Text);
+            currentOperation = "-";
+            operationsTextbox.Text = mainTextBox.Text + " - ";
+        }
+
+        public void Multiplication() {
+            savedNr = Int64.Parse(mainTextBox.Text);
+            currentOperation = "*";
+            operationsTextbox.Text = mainTextBox.Text + " * ";
+        }
+
+        public void Division() {
+            savedNr = Int64.Parse(mainTextBox.Text);
+            currentOperation = "/";
+            operationsTextbox.Text = mainTextBox.Text + " / ";
+        }
+
+        public void Sum() {
+            double result = 0;
+            if (currentOperation.Contains("+")) {
+                result = savedNr + Int64.Parse(mainTextBox.Text);
+            }
+            if (currentOperation.Contains("-")) {
+                result = savedNr - Int64.Parse(mainTextBox.Text);
+            }
+            if (currentOperation.Contains("*")) {
+                result = savedNr * Int64.Parse(mainTextBox.Text);
+            }
+            if (currentOperation.Contains("/")) {
+                result = savedNr / Int64.Parse(mainTextBox.Text);
+            }
+            mainTextBox.Text = result.ToString();
+            operationsTextbox.Text = "";
         }
 
         private void addToMainTextBox(char c)
@@ -190,7 +259,19 @@ namespace Kalkulator
 
         private void buttonPlus_Click(object sender, EventArgs e)
         {
+            Addition();
+        }
 
+        private void buttonEqual_Click(object sender, EventArgs e) {
+            Sum();
+        }
+
+        private void buttonMinus_Click(object sender, EventArgs e) {
+            Substraction();
+        }
+
+        private void buttonDivide_Click(object sender, EventArgs e) {
+            Division();
         }
     }
 }

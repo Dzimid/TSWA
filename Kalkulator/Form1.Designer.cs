@@ -61,7 +61,7 @@
             this.buttonDeleteCE = new System.Windows.Forms.Button();
             this.buttonDeleteC = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.operationsTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // mainTextBox
@@ -355,6 +355,7 @@
             this.buttonMinus.TabIndex = 26;
             this.buttonMinus.Text = "-";
             this.buttonMinus.UseVisualStyleBackColor = true;
+            this.buttonMinus.Click += new System.EventHandler(this.buttonMinus_Click);
             // 
             // buttonPlus
             // 
@@ -376,6 +377,7 @@
             this.buttonEqual.TabIndex = 28;
             this.buttonEqual.Text = "=";
             this.buttonEqual.UseVisualStyleBackColor = true;
+            this.buttonEqual.Click += new System.EventHandler(this.buttonEqual_Click);
             // 
             // buttonDivide
             // 
@@ -386,6 +388,7 @@
             this.buttonDivide.TabIndex = 29;
             this.buttonDivide.Text = "÷";
             this.buttonDivide.UseVisualStyleBackColor = true;
+            this.buttonDivide.Click += new System.EventHandler(this.buttonDivide_Click);
             // 
             // buttonBackspace
             // 
@@ -429,24 +432,24 @@
             this.textBox1.Size = new System.Drawing.Size(475, 15);
             this.textBox1.TabIndex = 33;
             // 
-            // textBox2
+            // operationsTextbox
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(17, 13);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(474, 22);
-            this.textBox2.TabIndex = 34;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.operationsTextbox.BackColor = System.Drawing.SystemColors.Control;
+            this.operationsTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.operationsTextbox.Enabled = false;
+            this.operationsTextbox.Location = new System.Drawing.Point(17, 13);
+            this.operationsTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.operationsTextbox.Name = "operationsTextbox";
+            this.operationsTextbox.Size = new System.Drawing.Size(474, 15);
+            this.operationsTextbox.TabIndex = 34;
+            this.operationsTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(508, 384);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.operationsTextbox);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonDeleteC);
             this.Controls.Add(this.buttonDeleteCE);
@@ -530,7 +533,7 @@
         public System.Windows.Forms.RadioButton systemBin;
         public System.Windows.Forms.RadioButton systemOct;
         public System.Windows.Forms.RadioButton systemHex;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox operationsTextbox;
     }
 }
 
