@@ -54,14 +54,9 @@ namespace Kalkulator
             char keyChar = Char.ToUpper(e.KeyChar);
 
 
-            // Validation + replacing 0 if first
+            // Validation
             if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
-                if (isFirst) {
-                    this.mainTextBox.Text = keyChar.ToString();
-                    isFirst = false;
-                } else {
-                    this.addToMainTextBox(keyChar);
-                }
+                  this.addToMainTextBox(keyChar);
             }
 
             // Backspace
@@ -118,27 +113,27 @@ namespace Kalkulator
         }
 
         public void Addition() {
-            savedNr = Int64.Parse(mainTextBox.Text);
+            savedNr += Int64.Parse(mainTextBox.Text);
             currentOperation = "+";
-            operationsTextbox.Text = mainTextBox.Text + " + ";
+            operationsTextbox.Text += mainTextBox.Text + " + ";
         }
 
         public void Substraction() {
-            savedNr = Int64.Parse(mainTextBox.Text);
+            savedNr -= Int64.Parse(mainTextBox.Text);
             currentOperation = "-";
-            operationsTextbox.Text = mainTextBox.Text + " - ";
+            operationsTextbox.Text += mainTextBox.Text + " - ";
         }
 
         public void Multiplication() {
             savedNr = Int64.Parse(mainTextBox.Text);
             currentOperation = "*";
-            operationsTextbox.Text = mainTextBox.Text + " * ";
+            operationsTextbox.Text += mainTextBox.Text + " * ";
         }
 
         public void Division() {
             savedNr = Int64.Parse(mainTextBox.Text);
             currentOperation = "/";
-            operationsTextbox.Text = mainTextBox.Text + " / ";
+            operationsTextbox.Text += mainTextBox.Text + " / ";
         }
 
         public void Sum() {
@@ -270,8 +265,35 @@ namespace Kalkulator
             Substraction();
         }
 
+        private void buttonMulti_Click(object sender, EventArgs e) {
+            Multiplication();
+        }
+
         private void buttonDivide_Click(object sender, EventArgs e) {
             Division();
         }
+
+        private void buttonDeleteC_Click(object sender, EventArgs e) {
+            mainTextBox.Text = "0";
+            operationsTextbox.Text = "";
+            isFirst = true;
+        }
+
+        private void mainTextBox_TextChanged(object sender, EventArgs e) {
+            
+            if (isFirst && mainTextBox.Text.Length>1) {
+                mainTextBox.Text = mainTextBox.Text.ElementAt(1).ToString();
+                isFirst = false;
+            } 
+            if (mainTextBox.Text == "0") {
+                isFirst = true;
+            } else {
+                isFirst = false;
+            }
+            if(mainTextBox.Text.Length == 0) {
+                mainTextBox.Text = "0";
+            }
+        }
+
     }
 }
