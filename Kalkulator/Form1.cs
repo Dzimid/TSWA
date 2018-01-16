@@ -15,9 +15,13 @@ namespace Kalkulator
         private Calculator calculator;
         private Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9 };
         private Button[] buttonsArray;
-        bool isFirst = true;
-        double savedNr;
+        public bool isFirst = true;
+        public bool isFirstOperation = true;
+        double totalNr;
+        double lastNr;
         string currentOperation;
+        public bool isOperation = false;
+        public bool isMinus = false;
 
         public Form1()
         {
@@ -27,7 +31,7 @@ namespace Kalkulator
         public void Form1_Load(object sender, EventArgs e)
         {
             // Initialize calculator
-            this.calculator = new Calculator();
+            this.calculator = new Calculator(this);
             mainTextBox.Text = this.calculator.Result;
 
             switch (calculator.SystemV) {
@@ -66,12 +70,12 @@ namespace Kalkulator
 
             // Addition
             if ((char)43 == e.KeyChar) {
-                Addition();
+                calculator.Addition();
             }
 
             // Substraction
             if ((char)45 == e.KeyChar) {
-                Substraction();
+                calculator.Substraction();
             }
 
             // Multiplication
@@ -86,7 +90,7 @@ namespace Kalkulator
 
             // sum
             if ((char)61 == e.KeyChar) {
-                Sum();
+                calculator.Sum();
             }
         }
 
@@ -112,51 +116,52 @@ namespace Kalkulator
             }
         }
 
-        public void Addition() {
-            savedNr += Int64.Parse(mainTextBox.Text);
-            currentOperation = "+";
-            operationsTextbox.Text += mainTextBox.Text + " + ";
-        }
-
-        public void Substraction() {
-            savedNr -= Int64.Parse(mainTextBox.Text);
-            currentOperation = "-";
-            operationsTextbox.Text += mainTextBox.Text + " - ";
-        }
+      
 
         public void Multiplication() {
-            savedNr = Int64.Parse(mainTextBox.Text);
+            lastNr = Int64.Parse(mainTextBox.Text);
+            totalNr *= lastNr;
             currentOperation = "*";
             operationsTextbox.Text += mainTextBox.Text + " * ";
         }
 
         public void Division() {
-            savedNr = Int64.Parse(mainTextBox.Text);
+            lastNr = Int64.Parse(mainTextBox.Text);
+            totalNr = Int64.Parse(mainTextBox.Text);
             currentOperation = "/";
             operationsTextbox.Text += mainTextBox.Text + " / ";
         }
 
         public void Sum() {
-            double result = 0;
-            if (currentOperation.Contains("+")) {
-                result = savedNr + Int64.Parse(mainTextBox.Text);
-            }
-            if (currentOperation.Contains("-")) {
-                result = savedNr - Int64.Parse(mainTextBox.Text);
-            }
-            if (currentOperation.Contains("*")) {
-                result = savedNr * Int64.Parse(mainTextBox.Text);
-            }
-            if (currentOperation.Contains("/")) {
-                result = savedNr / Int64.Parse(mainTextBox.Text);
-            }
-            mainTextBox.Text = result.ToString();
+            
+            isFirst = false;
+
+            //if (currentOperation.Contains("+")) {
+            //    result = totalNr + Int64.Parse(mainTextBox.Text);
+            //}
+            //if (currentOperation.Contains("-")) {
+            //    result = totalNr - Int64.Parse(mainTextBox.Text);
+            //}
+            //if (currentOperation.Contains("*")) {
+            //    result = lastNr* Int64.Parse(mainTextBox.Text);
+            //}
+            //if (currentOperation.Contains("/")) {
+            //    result = totalNr / Int64.Parse(mainTextBox.Text);
+            //}
+            
             operationsTextbox.Text = "";
+
+
         }
 
         private void addToMainTextBox(char c)
         {
-            mainTextBox.Text += c;
+            if (isOperation) {
+                mainTextBox.Text = c.ToString();
+            } else {
+                mainTextBox.Text += c;
+            }
+            this.isOperation = false;
         }
 
         private void systemBin_CheckedChanged(object sender, EventArgs e)
@@ -254,15 +259,15 @@ namespace Kalkulator
 
         private void buttonPlus_Click(object sender, EventArgs e)
         {
-            Addition();
+            calculator.Addition();
         }
 
         private void buttonEqual_Click(object sender, EventArgs e) {
-            Sum();
+            calculator.Sum();
         }
 
         private void buttonMinus_Click(object sender, EventArgs e) {
-            Substraction();
+            calculator.Substraction();
         }
 
         private void buttonMulti_Click(object sender, EventArgs e) {
@@ -277,11 +282,13 @@ namespace Kalkulator
             mainTextBox.Text = "0";
             operationsTextbox.Text = "";
             isFirst = true;
+            isFirstOperation = true;
+            calculator.resultant = 0;
         }
 
         private void mainTextBox_TextChanged(object sender, EventArgs e) {
             
-            if (isFirst && mainTextBox.Text.Length>1) {
+            if (isFirst && mainTextBox.Text.Length > 1) {
                 mainTextBox.Text = mainTextBox.Text.ElementAt(1).ToString();
                 isFirst = false;
             } 
