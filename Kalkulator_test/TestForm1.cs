@@ -25,7 +25,7 @@ namespace Kalkulator_test
         {
             // Load calculator form
             this.form = new Form1();
-            this.calculator = new Calculator();
+            this.calculator = new Calculator(this.form);
             form.Show();
 
             // Running tests
@@ -36,7 +36,7 @@ namespace Kalkulator_test
 
         private void testResultValue()
         {
-            if ("0" == calculator.Result) {
+            if ("0" == calculator.result.ToString()) {
                 testResult.ForeColor = Color.Green;
             } else {
                 testResult.ForeColor = Color.Red;
