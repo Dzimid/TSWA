@@ -29,8 +29,6 @@ namespace Kalkulator
             this.form = form;
         }
 
-       
-
         public string SystemV
         {
             set {

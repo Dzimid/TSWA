@@ -13,7 +13,7 @@ namespace Kalkulator
     public partial class Form1 : Form
     {
         private Calculator calculator;
-        private Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9 };
+        private Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9, Keys.A, Keys.B, Keys.C, Keys.D, Keys.E, Keys.F };
         private Button[] buttonsArray;
         public bool isFirst = true;
         public bool isFirstOperation = true;
@@ -46,19 +46,14 @@ namespace Kalkulator
                     break;
             }
 
-            Button[] btns = { buttonBackspace, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9 };
+            Button[] btns = { buttonBackspace, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonA, buttonB, buttonC, buttonD, buttonE, buttonF };
             this.buttonsArray = btns;
-    }
+        }
 
         public void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char keyChar = Char.ToUpper(e.KeyChar);
-
-
-            // Validation
-            if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
-                this.addToMainTextBox(keyChar);
-            }
+            this.addToMainTextBox(keyChar);
 
             // Backspace
             if ((char)8 == e.KeyChar) {
@@ -115,51 +110,24 @@ namespace Kalkulator
 
         private void addToMainTextBox(char c)
         {
-            if (isOperation) {
-                mainTextBox.Text = c.ToString();
-            } else {
-                mainTextBox.Text += c;
+            // Validation
+            if (this.calculator.SystemTable[this.calculator.SystemV].Contains(c)) {
+                if (isOperation) {
+                    mainTextBox.Text = c.ToString();
+                } else {
+                    mainTextBox.Text += c;
+                }
+                this.isOperation = false;
             }
-            this.isOperation = false;
         }
-
 
         //Changing number systems
-        private void systemBin_CheckedChanged(object sender, EventArgs e)
-        {           
-            this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
-        }
-
-        private void systemOct_CheckedChanged(object sender, EventArgs e)
+        private void system_CheckedChanged(object sender, EventArgs e)
         {
             this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
         }
 
-        private void systemDec_CheckedChanged(object sender, EventArgs e)
-        {
-            this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
-        }
-
-        private void systemHex_CheckedChanged(object sender, EventArgs e)
-        {
-            this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
-        }
-
-
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var b = (Button)sender;
-            this.addToMainTextBox(char.Parse(b.Text));
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            var b = (Button)sender;
-            this.addToMainTextBox(char.Parse(b.Text));
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void buttons_Click(object sender, EventArgs e)
         {
             var b = (Button)sender;
             this.addToMainTextBox(char.Parse(b.Text));
@@ -169,44 +137,6 @@ namespace Kalkulator
         {
             this.Backspace();
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var b = (Button) sender;
-            this.addToMainTextBox(char.Parse(b.Text));
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var b = (Button)sender;
-            this.addToMainTextBox(char.Parse(b.Text));
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            var b = (Button)sender;
-            this.addToMainTextBox(char.Parse(b.Text));
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            var b = (Button)sender;
-            this.addToMainTextBox(char.Parse(b.Text));
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            var b = (Button)sender;
-            this.addToMainTextBox(char.Parse(b.Text));
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            var b = (Button)sender;
-            this.addToMainTextBox(char.Parse(b.Text));
-        }
-
-
 
         //Ligthing up keys
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -223,30 +153,33 @@ namespace Kalkulator
             }
         }
 
-
-
         private void buttonPlus_Click(object sender, EventArgs e)
         {
             calculator.Addition();
         }
 
-        private void buttonEqual_Click(object sender, EventArgs e) {
+        private void buttonEqual_Click(object sender, EventArgs e)
+        {
             calculator.Sum();
         }
 
-        private void buttonMinus_Click(object sender, EventArgs e) {
+        private void buttonMinus_Click(object sender, EventArgs e)
+        {
             calculator.Substraction();
         }
 
-        private void buttonMulti_Click(object sender, EventArgs e) {
+        private void buttonMulti_Click(object sender, EventArgs e)
+        {
             //Multiplication();
         }
 
-        private void buttonDivide_Click(object sender, EventArgs e) {
+        private void buttonDivide_Click(object sender, EventArgs e)
+        {
             //Division();
         }
 
-        private void buttonDeleteC_Click(object sender, EventArgs e) {
+        private void buttonDeleteC_Click(object sender, EventArgs e)
+        {
             mainTextBox.Text = "0";
             operationsTextbox.Text = "";
             isFirst = true;
@@ -254,23 +187,22 @@ namespace Kalkulator
             calculator.result = 0;
         }
 
-
-
-
-        private void mainTextBox_TextChanged(object sender, EventArgs e) {
+        private void mainTextBox_TextChanged(object sender, EventArgs e)
+        {
             if (isFirst && mainTextBox.Text.Length > 1) {
                 mainTextBox.Text = mainTextBox.Text.ElementAt(1).ToString();
                 isFirst = false;
             } 
+
             if (mainTextBox.Text == "0") {
                 isFirst = true;
             } else {
                 isFirst = false;
             }
+
             if(mainTextBox.Text.Length == 0) {
                 mainTextBox.Text = "0";
             }
         }
-
     }
 }
