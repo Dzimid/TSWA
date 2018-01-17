@@ -13,7 +13,7 @@ namespace Kalkulator
     public partial class Form1 : Form
     {
         private Calculator calculator;
-        private Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9 };
+        public Keys[] keyArray = { Keys.Back, Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9 };
         private Button[] buttonsArray;
         public bool isFirst = true;
         public bool isFirstOperation = true;
@@ -53,7 +53,6 @@ namespace Kalkulator
         public void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char keyChar = Char.ToUpper(e.KeyChar);
-
 
             // Validation
             if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
@@ -102,7 +101,6 @@ namespace Kalkulator
                     }
                 }
             }
-
             return null;
         }
 
@@ -209,14 +207,14 @@ namespace Kalkulator
 
 
         //Ligthing up keys
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        public void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (-1 != Array.IndexOf(this.keyArray, e.KeyCode)) {
                 this.buttonsArray[Array.IndexOf(this.keyArray, e.KeyCode)].BackColor = SystemColors.ControlLightLight;
             }
         }
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        public void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             if (-1 != Array.IndexOf(this.keyArray, e.KeyCode)) {
                 this.buttonsArray[Array.IndexOf(this.keyArray, e.KeyCode)].BackColor = SystemColors.ControlLight;

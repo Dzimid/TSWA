@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Kalkulator;
+using System.Drawing;
 
 namespace UnitTest
 {
@@ -82,7 +83,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void testAddition() {
+        public void TestAddition() {
             char a = '5';
 
             keyPress(a);
@@ -93,7 +94,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void testReplacingTextAfterOperation() {
+        public void TestReplacingTextAfterOperation() {
             keyPress('5');
             keyPress('0');
             keyPress('+');
@@ -101,6 +102,25 @@ namespace UnitTest
             int textboxLength = this.form.mainTextBox.Text.Length;
 
             Assert.AreEqual(1, this.form.mainTextBox.Text.Length);
+        }
+
+        [TestMethod]
+        public void TestdeleteToZero() {
+            keyPress('5');
+            this.form.Backspace();
+
+            Assert.AreEqual("0", this.form.mainTextBox.Text);
+        }
+
+        [TestMethod]
+        public void TestChangeButtonColor() {
+            this.form.Form1_KeyDown(new object(), new System.Windows.Forms.KeyEventArgs(form.keyArray[6]));
+            bool isColorChanged = false;
+            if(this.form.button5.BackColor == SystemColors.ControlLightLight) {
+                isColorChanged = true;
+            }
+            this.form.Form1_KeyUp(new object(), new System.Windows.Forms.KeyEventArgs(form.keyArray[6]));
+            Assert.IsTrue(isColorChanged);
         }
 
 
