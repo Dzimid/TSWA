@@ -9,19 +9,18 @@ namespace Kalkulator
 {  
     public class Calculator
     {
-        private string result;
         private string systemV;
         private static char[] binTable = { '0', '1' };
         private static char[] octTable = { '0', '1', '2', '3', '4', '5', '6', '7' };
         private static char[] decTable = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         private static char[] hexTable = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
         private IDictionary<string, char[]> systemTable = new Dictionary<string, char[]>();
-        Form1 form;
-        public double resultant;
+        private Form1 form;
+        public double result;
 
         public Calculator(Form1 form)
         {
-            this.result = "0";
+            this.result = 0;
             this.systemV = "DEC";
             this.systemTable["BIN"] = Calculator.binTable;
             this.systemTable["OCT"] = Calculator.octTable;
@@ -30,16 +29,7 @@ namespace Kalkulator
             this.form = form;
         }
 
-        public string Result
-        {
-            set {
-                this.result = value;
-            }
-
-            get {
-                return this.result;
-            }
-        }
+       
 
         public string SystemV
         {
@@ -91,35 +81,36 @@ namespace Kalkulator
 
             form.isMinus = false;
             form.isOperation = true;
-            resultant += Int64.Parse(form.mainTextBox.Text);
+            result += Int64.Parse(form.mainTextBox.Text);
             form.operationsTextbox.Text += form.mainTextBox.Text + " + ";
-            form.mainTextBox.Text = resultant.ToString();
+            form.mainTextBox.Text = result.ToString();
 
             form.isFirstOperation = false;
         }
 
         public void Substraction() {
-
             form.isOperation = true;
             if (form.isFirstOperation) {
-                resultant += Int64.Parse(form.mainTextBox.Text);
+                result += Int64.Parse(form.mainTextBox.Text);
                 form.isMinus = true;
             } else {
-                resultant -= Int64.Parse(form.mainTextBox.Text);
-                form.isMinus = false;
+                result -= Int64.Parse(form.mainTextBox.Text);
             }
             form.operationsTextbox.Text += form.mainTextBox.Text + " - ";
-            form.mainTextBox.Text = resultant.ToString();
+            form.mainTextBox.Text = result.ToString();
 
             form.isFirstOperation = false;
         }
 
         public void Sum() {
-
             form.isOperation = false;
-            resultant += Int64.Parse(form.mainTextBox.Text);
-            form.mainTextBox.Text = resultant.ToString();
-            resultant = 0;
+            if (form.isMinus) {
+                result -= Int64.Parse(form.mainTextBox.Text);
+            } else {
+                result += Int64.Parse(form.mainTextBox.Text);
+            }
+            form.mainTextBox.Text = result.ToString();
+            result = 0;
             form.operationsTextbox.Text = "";
         }
     }

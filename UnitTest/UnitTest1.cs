@@ -12,15 +12,15 @@ namespace UnitTest
 
         public UnitTest1()
         {
-            this.calc = new Calculator();
             this.form = new Form1();
+            this.calc = new Calculator(form);
             this.form.Form1_Load(this, new EventArgs());
         }
 
         [TestMethod]
         public void TestStartingResult()
         {
-            Assert.AreEqual("0", this.calc.Result);
+            Assert.AreEqual("0", this.calc.result.ToString());
         }
 
         [TestMethod]
@@ -44,10 +44,13 @@ namespace UnitTest
         [TestMethod]
         public void TestBackspaceButton()
         {
+            keyPress('5');
+            keyPress('5');
+            keyPress('5');
             int textboxLength = this.form.mainTextBox.Text.Length;
             this.form.Backspace();
 
-            Assert.AreEqual(textboxLength - 1, this.form.mainTextBox.Text.Length);
+            Assert.AreEqual(textboxLength-1, this.form.mainTextBox.Text.Length);
         }
 
         [TestMethod]
@@ -78,12 +81,35 @@ namespace UnitTest
             Assert.IsTrue(this.testSystem(this.calc.OctTable));
         }
 
+        [TestMethod]
+        public void testAddition() {
+            char a = '5';
+
+            keyPress(a);
+            keyPress('+');
+            keyPress('=');
+
+            Assert.AreEqual("10", form.mainTextBox.Text.ToString());
+        }
+
+        [TestMethod]
+        public void testReplacingTextAfterOperation() {
+            keyPress('5');
+            keyPress('0');
+            keyPress('+');
+            keyPress('5');
+            int textboxLength = this.form.mainTextBox.Text.Length;
+
+            Assert.AreEqual(1, this.form.mainTextBox.Text.Length);
+        }
+
+
         private bool testSystem(char[] table)
         {
             bool testResult = true;
 
             for (int i = 33; i <= 126; ++i) {
-                this.form.Form1_KeyPress(new object(), new System.Windows.Forms.KeyPressEventArgs((char)i));
+                keyPress((char)i);
             }
 
             foreach (char c in this.form.mainTextBox.Text) {
@@ -94,5 +120,10 @@ namespace UnitTest
 
             return testResult;
         }
+
+        private void keyPress(char c) {
+            this.form.Form1_KeyPress(new object(), new System.Windows.Forms.KeyPressEventArgs(c));
+        }
+
     }
 }

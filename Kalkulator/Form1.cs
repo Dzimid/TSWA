@@ -17,9 +17,6 @@ namespace Kalkulator
         private Button[] buttonsArray;
         public bool isFirst = true;
         public bool isFirstOperation = true;
-        double totalNr;
-        double lastNr;
-        string currentOperation;
         public bool isOperation = false;
         public bool isMinus = false;
 
@@ -32,7 +29,7 @@ namespace Kalkulator
         {
             // Initialize calculator
             this.calculator = new Calculator(this);
-            mainTextBox.Text = this.calculator.Result;
+            mainTextBox.Text = this.calculator.result.ToString();
 
             switch (calculator.SystemV) {
                 case "BIN":
@@ -60,7 +57,7 @@ namespace Kalkulator
 
             // Validation
             if (this.calculator.SystemTable[this.calculator.SystemV].Contains(keyChar)) {
-                  this.addToMainTextBox(keyChar);
+                this.addToMainTextBox(keyChar);
             }
 
             // Backspace
@@ -80,12 +77,12 @@ namespace Kalkulator
 
             // Multiplication
             if ((char)42 == e.KeyChar) {
-                Multiplication();
+                //Multiplication();
             }
 
             // Division
             if ((char)47 == e.KeyChar) {
-                Division();
+                //Division();
             }
 
             // sum
@@ -116,44 +113,6 @@ namespace Kalkulator
             }
         }
 
-      
-
-        public void Multiplication() {
-            lastNr = Int64.Parse(mainTextBox.Text);
-            totalNr *= lastNr;
-            currentOperation = "*";
-            operationsTextbox.Text += mainTextBox.Text + " * ";
-        }
-
-        public void Division() {
-            lastNr = Int64.Parse(mainTextBox.Text);
-            totalNr = Int64.Parse(mainTextBox.Text);
-            currentOperation = "/";
-            operationsTextbox.Text += mainTextBox.Text + " / ";
-        }
-
-        public void Sum() {
-            
-            isFirst = false;
-
-            //if (currentOperation.Contains("+")) {
-            //    result = totalNr + Int64.Parse(mainTextBox.Text);
-            //}
-            //if (currentOperation.Contains("-")) {
-            //    result = totalNr - Int64.Parse(mainTextBox.Text);
-            //}
-            //if (currentOperation.Contains("*")) {
-            //    result = lastNr* Int64.Parse(mainTextBox.Text);
-            //}
-            //if (currentOperation.Contains("/")) {
-            //    result = totalNr / Int64.Parse(mainTextBox.Text);
-            //}
-            
-            operationsTextbox.Text = "";
-
-
-        }
-
         private void addToMainTextBox(char c)
         {
             if (isOperation) {
@@ -164,6 +123,8 @@ namespace Kalkulator
             this.isOperation = false;
         }
 
+
+        //Changing number systems
         private void systemBin_CheckedChanged(object sender, EventArgs e)
         {           
             this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
@@ -183,6 +144,8 @@ namespace Kalkulator
         {
             this.calculator.SystemV = this.getCheckedRadioName().Replace("system", String.Empty).ToUpper();
         }
+
+
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -243,6 +206,9 @@ namespace Kalkulator
             this.addToMainTextBox(char.Parse(b.Text));
         }
 
+
+
+        //Ligthing up keys
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (-1 != Array.IndexOf(this.keyArray, e.KeyCode)) {
@@ -256,6 +222,8 @@ namespace Kalkulator
                 this.buttonsArray[Array.IndexOf(this.keyArray, e.KeyCode)].BackColor = SystemColors.ControlLight;
             }
         }
+
+
 
         private void buttonPlus_Click(object sender, EventArgs e)
         {
@@ -271,11 +239,11 @@ namespace Kalkulator
         }
 
         private void buttonMulti_Click(object sender, EventArgs e) {
-            Multiplication();
+            //Multiplication();
         }
 
         private void buttonDivide_Click(object sender, EventArgs e) {
-            Division();
+            //Division();
         }
 
         private void buttonDeleteC_Click(object sender, EventArgs e) {
@@ -283,11 +251,13 @@ namespace Kalkulator
             operationsTextbox.Text = "";
             isFirst = true;
             isFirstOperation = true;
-            calculator.resultant = 0;
+            calculator.result = 0;
         }
 
+
+
+
         private void mainTextBox_TextChanged(object sender, EventArgs e) {
-            
             if (isFirst && mainTextBox.Text.Length > 1) {
                 mainTextBox.Text = mainTextBox.Text.ElementAt(1).ToString();
                 isFirst = false;
